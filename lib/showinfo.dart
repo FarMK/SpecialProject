@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 
 class ShowInfo extends StatelessWidget {
-  String title;
-  String id;
-  String description;
-  num price;
-  String mainurl;
-  int length;
-  String url1;
-  String url2;
-  int amount;
+  final String title;
+  final String id;
+  final String description;
+  final num price;
+  final String mainurl;
+  final int length;
+  final String url1;
+  final String url2;
+  final int amount;
 
   ShowInfo(
       {this.id,
@@ -89,13 +89,13 @@ class ShowInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('id:${id}', style: TextStyle(fontSize: 18)),
-                      Text('Название модели: ${title}',
+                      Text('id:$id', style: TextStyle(fontSize: 18)),
+                      Text('Название модели: $title',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)),
-                      Text('Описание:${description}',
+                      Text('Описание:$description',
                           style: TextStyle(fontSize: 18)),
-                      Text('Цена: ${price}\$', style: TextStyle(fontSize: 23)),
+                      Text('Цена: $price\$', style: TextStyle(fontSize: 23)),
                     ],
                   ),
                 ),
@@ -105,7 +105,7 @@ class ShowInfo extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (Context) => CreateRequest(
+                          builder: (context) => CreateRequest(
                                 amount: amount,
                                 price: price,
                               )));
@@ -271,7 +271,7 @@ class RequestInfo extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   child: Container(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: Colors.purple,
                       borderRadius: BorderRadius.circular(30),

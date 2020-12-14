@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hello/loginscreen.dart';
+
 import 'showinfo.dart';
-import 'package:hello/kitchenproducts.dart';
+import 'package:hello/products.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           textTheme:
               GoogleFonts.marmeladTextTheme(Theme.of(context).textTheme)),
-      home: HomePage(),
+      home: LoginScreen(),
     );
   }
 }
@@ -108,8 +110,8 @@ class HomePage extends StatelessWidget {
     ));
   }
 
-  final List<KitchenProducts> kitchenItems = [
-    KitchenProducts(
+  final List<Products> kitchenItems = [
+    Products(
       id: 'p1',
       title: 'Посудомойка',
       description: 'Удобная посудомойка для кухни',
@@ -122,7 +124,7 @@ class HomePage extends StatelessWidget {
           'https://i.pinimg.com/564x/b2/0c/f9/b20cf936bfab966fc6203a039eaea061.jpg',
       amount: 32,
     ),
-    KitchenProducts(
+    Products(
       id: 'p2',
       title: 'Газовая плита',
       description: 'УПлита для кухни',
@@ -134,7 +136,7 @@ class HomePage extends StatelessWidget {
           'https://i.pinimg.com/564x/46/6b/de/466bde6c01050ec9b97a1fb50bf2bf30.jpg',
       amount: 20,
     ),
-    KitchenProducts(
+    Products(
       id: 'p3',
       title: 'Блендер',
       description: 'Мощный блендер для коктейлей',
@@ -147,7 +149,7 @@ class HomePage extends StatelessWidget {
           'https://i.pinimg.com/564x/4e/85/a8/4e85a8013dfbf67982d7efeebdc7251a.jpg',
       amount: 50,
     ),
-    KitchenProducts(
+    Products(
       id: 'p4',
       title: 'Холодильник',
       description: 'Вместиттельный и комфортабельный',

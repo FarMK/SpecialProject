@@ -1,4 +1,4 @@
-class KitchenProducts {
+class Products {
   String title;
   String id;
   String description;
@@ -8,7 +8,7 @@ class KitchenProducts {
   String url2;
   int amount;
 
-  KitchenProducts(
+  Products(
       {this.id,
       this.title,
       this.description,
