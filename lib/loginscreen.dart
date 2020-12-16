@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hello/authServices.dart';
+import 'package:hello/registerscreen.dart';
 
 import 'main.dart';
+import 'user.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -12,17 +16,37 @@ class LoginScreenState extends State {
   TextEditingController _passwordcontroller = TextEditingController();
   bool _isobscure = true;
 
+  AuthServices _authcreation = AuthServices();
+
   String email;
   String password;
 
-  void buttonpressed() {
+  Future errorInfo(String text) {
+    return Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void buttonpressed() async {
     email = _emailcontroller.text;
     password = _passwordcontroller.text;
+    if (email.isEmpty || password.isEmpty) return;
 
-    _emailcontroller.clear();
-    _passwordcontroller.clear();
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+    MyUser user = await _authcreation.loginwithEmailandPassword(
+        email.trim(), password.trim());
+    if (user == null) {
+      errorInfo('check your email/password');
+    } else {
+      _emailcontroller.clear();
+      _passwordcontroller.clear();
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    }
   }
 
   void changePrivacy() {
@@ -59,7 +83,7 @@ class LoginScreenState extends State {
                   controller: _emailcontroller,
                   decoration: InputDecoration(
                     labelText: 'EMAIL',
-                    hintText: 'Write your user name',
+                    hintText: 'Write your email',
                     prefixIcon: Icon(Icons.email),
                   ),
                 ),
@@ -75,7 +99,7 @@ class LoginScreenState extends State {
                   controller: _passwordcontroller,
                   decoration: InputDecoration(
                       labelText: 'PASSWORD',
-                      hintText: 'Write your password name',
+                      hintText: 'Write your password',
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: IconButton(
                         icon: Icon(_isobscure
@@ -105,6 +129,17 @@ class LoginScreenState extends State {
                         fontSize: 25,
                       )),
                 ),
+              ),
+              SizedBox(height: 20),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RegistrationScreen()));
+                },
+                child: Text('create an account?',
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
               )
             ],
           )),

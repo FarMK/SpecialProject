@@ -1,12 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hello/ExtendedPages.dart';
 import 'package:hello/loginscreen.dart';
 
 import 'showinfo.dart';
 import 'package:hello/products.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -32,7 +36,13 @@ class HomePage extends StatelessWidget {
         children: [
           ListTile(
             trailing: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ExtendedPages(arr: kitchenItems)));
+              },
               icon: Icon(Icons.dashboard),
             ),
             title: Text('Товары для кухни',
@@ -129,7 +139,8 @@ class HomePage extends StatelessWidget {
       title: 'Газовая плита',
       description: 'УПлита для кухни',
       price: 250,
-      mainurl: 'https://my.abad.uz/images/426/47653/240_s696brojx41dhk7.jpg',
+      mainurl:
+          'https://i.pinimg.com/564x/6c/fc/09/6cfc099bccdcc6642910e1f39363ddf3.jpg',
       url1:
           'https://i.pinimg.com/564x/ff/9a/51/ff9a51f1da6cac345cb59cb6756fda69.jpg',
       url2:

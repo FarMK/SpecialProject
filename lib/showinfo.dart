@@ -154,7 +154,6 @@ class _CreateRequestState extends State {
       }
 
       if (!ispressed) {
-        result /= _count;
         if (_count > 1) {
           --_count;
         }
@@ -204,7 +203,7 @@ class _CreateRequestState extends State {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => RequestInfo(
