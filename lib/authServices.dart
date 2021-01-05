@@ -15,7 +15,7 @@ class AuthServices {
     }
   }
 
-  Future registerwithEmaolandPassword(String email, String password) async {
+  Future registerwithEmailandPassword(String email, String password) async {
     try {
       UserCredential result = await _fauth.createUserWithEmailAndPassword(
           email: email, password: password);

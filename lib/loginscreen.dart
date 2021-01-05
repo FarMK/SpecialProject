@@ -35,7 +35,9 @@ class LoginScreenState extends State {
   void buttonpressed() async {
     email = _emailcontroller.text;
     password = _passwordcontroller.text;
-    if (email.isEmpty || password.isEmpty) return;
+    if (email.isEmpty || password.isEmpty) {
+      errorInfo('password and email can not be empty');
+    }
 
     MyUser user = await _authcreation.loginwithEmailandPassword(
         email.trim(), password.trim());
@@ -44,7 +46,7 @@ class LoginScreenState extends State {
     } else {
       _emailcontroller.clear();
       _passwordcontroller.clear();
-      Navigator.pushReplacement(
+      Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomePage()));
     }
   }
